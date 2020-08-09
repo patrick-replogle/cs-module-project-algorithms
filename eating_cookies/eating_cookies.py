@@ -19,6 +19,7 @@ def eating_cookies(n, memoize=None):
         result = eating_cookies(
             n-1) + eating_cookies(n-2) + eating_cookies(n-3)
         cache[n] = result
+
         return cache[n]
 
 

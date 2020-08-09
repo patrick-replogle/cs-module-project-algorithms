@@ -28,7 +28,6 @@ Returns: a List of integers
 
 #     return result
 
-
 def sliding_window_max(nums, k):
     queue = []
     results = []

@@ -5,10 +5,10 @@ Returns: an integer
 
 
 # first solution
-def single_number(arr):
-    for val in arr:
-        if arr.count(val) == 1:
-            return val
+# def single_number(arr):
+#     for val in arr:
+#         if arr.count(val) == 1:
+#             return val
 
 
 # second solution
@@ -20,6 +20,16 @@ def single_number(arr):
 #         else:
 #             unique.add(val)
 #     return unique.pop()
+
+# same logic as above but using dict instead of set
+def single_number(arr):
+    unique = dict()
+    for val in arr:
+        if val in unique:
+            unique.pop(val)
+        else:
+            unique[val] = True
+    return list(unique.keys())[0]
 
 
 print(single_number([1, 1, 4, 4, 5, 5, 3, 3, 9, 0, 0]))
