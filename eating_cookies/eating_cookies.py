@@ -10,17 +10,19 @@ cache = {}
 def eating_cookies(n, memoize=None):
     if n in cache:
         return cache[n]
-    else:
-        if n == 0:
-            return 1
-        if n < 0:
-            return 0
 
+    if n == 0:
+        return 1
+
+    if n < 0:
+        return 0
+
+    else:
         result = eating_cookies(
             n-1) + eating_cookies(n-2) + eating_cookies(n-3)
         cache[n] = result
 
-        return cache[n]
+        return result
 
 
 if __name__ == "__main__":
