@@ -7,24 +7,36 @@ cache[0] = 1
 
 
 # solution works with amounts up to 1000
+# def making_change(amount, denominations):
+#     if (amount, len(denominations)) in cache:
+#         return cache[(amount, len(denominations))]
+
+#     if amount == 0:
+#         return 1
+
+#     if amount < 0:
+#         return 0
+
+#     else:
+#         count = 0
+#         for i in range(len(denominations)):
+#             count += making_change(amount -
+#                                    denominations[i], denominations[i:])
+
+#         cache[(amount, len(denominations))] = count
+#         return count
+
+
 def making_change(amount, denominations):
-    if (amount, len(denominations)) in cache:
-        return cache[(amount, len(denominations))]
+    cache = [0 for _ in range(amount + 1)]
+    cache[0] = 1
 
-    if amount == 0:
-        return 1
+    for i in range(len(denominations)):
+        for j in range(denominations[i], amount + 1):
+            remainder = j - denominations[i]
+            cache[j] += cache[remainder]
 
-    if amount < 0:
-        return 0
-
-    else:
-        count = 0
-        for i in range(len(denominations)):
-            count += making_change(amount -
-                                   denominations[i], denominations[i:])
-
-        cache[(amount, len(denominations))] = count
-        return count
+    return cache[amount]
 
 
 if __name__ == "__main__":
